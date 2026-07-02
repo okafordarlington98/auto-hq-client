@@ -7,17 +7,16 @@ import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 import Events from "./pages/Events"
 import CreateEvent from "./pages/CreateEvent"
-import EditEvent from "./pages/EditEvent"
-import EventDetails from "./pages/EventDetails"
-import Forums from "./pages/Forums"
+import Forums from "./pages/CreateForum"
 import CreateForum from "./pages/CreateForum"
-import ForumDetails from "./pages/ForumDetails"
-import User from "./pages/User"
-import EditUser from "./pages/EditUser";
+import EditEvent from "./pages/EditEvent"
+
 
 // components
 import Navbar from "./components/Navbar"
-import Footer from "./components/Footer";
+import EventCard from "./components/EventCard"
+import ForumCard from "./components/ForumCard";
+
 
 function App() {
 
@@ -32,7 +31,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private-page-example" element={<OnlyPrivate> <PrivatePageExample /> </OnlyPrivate>} />
+        <Route path="/event" element={<Events />} />
+        <Route path="/events/create" element={<CreateEvent />} />
+        <Route path="/events/edit" element={<EditEvent />} />
+        <Route path="/forum" element={<Forums />} />
+        <Route path="/forums/create" element={<CreateForum />} />
+    
 
         {/* error FE routes here... */}
 
