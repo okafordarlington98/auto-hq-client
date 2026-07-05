@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-function ForumCard ({}) {
+function ForumCard ({ forum }) {
   
   return (
     <div className="ForumCard card">
-      <Link to={`/forums/forum.id`}>
+      <Link to={`/forums/${forum._id}`}>
         <h3>{forum.name}</h3>
       </Link>
 

@@ -1,29 +1,33 @@
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  return (
-    <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
+    return (
+        <nav>
 
-      <Link to="/event">
-        <button>Events</button>
-      </Link>
+            <div className="logo">
+                <Link to="/">AUTO HQ</Link>
+            </div>
 
-      <Link to="/forum">
-        <button>Forums</button>
-      </Link>
+            <div className="links">
 
-      <Link to="/Signup">
-        <button>Signup</button>
-      </Link>
+                <Link to="/">Home</Link>
 
-      <Link to="/Login">
-        <button>Login</button>
-      </Link>
-    </nav>
-  );
+                <Link to="/events">Events</Link>
+
+                <Link to="/forums">Forums</Link>
+
+            </div>
+
+            <div className="auth">
+
+                <Link to="/login">Login</Link>
+
+                <Link to="/signup">Signup</Link>
+
+            </div>
+
+        </nav>
+    );
 }
 
 export default Navbar;

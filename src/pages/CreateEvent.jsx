@@ -19,15 +19,15 @@ function CreateEvent() {
         e.preventDefault();
 
         const body = {
-            title: title,
-            description: description,
-            location: location,
-            date: date,
-            startTime: startTime,
-            endTime: endTime,
-            image: image,
-            organizer: organizer
-        }
+            title,
+            description,
+            location,
+            date,
+            startTime,
+            endTime,
+            image,
+            organizer
+        };
 
         try {
             // call the API here to create one event...
@@ -42,7 +42,8 @@ function CreateEvent() {
     };
 
     return (
-        <div className="CreateEvent">
+        <div className="form">
+
             <h3>Add Event</h3>
 
             <form onSubmit={handleSubmit}>

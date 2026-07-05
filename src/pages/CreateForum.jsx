@@ -15,11 +15,11 @@ function CreateForum() {
         e.preventDefault();
 
         const body = {
-            name: name,
-            description: description,
-            icon: icon,
-            image: image,
-        }
+            name,
+            description,
+            icon,
+            image
+        };
 
         try {
             // call the API here to create one forum...
@@ -34,8 +34,10 @@ function CreateForum() {
     };
 
     return (
-        <div className="CreateForum">
-            <h3>Add Forum</h3>
+        <div className="form">
+
+            <h2>Create Forum</h2>
+            <br />
 
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>

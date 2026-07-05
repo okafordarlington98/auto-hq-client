@@ -47,9 +47,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="form">
 
       <h1>Login Form</h1>
+      <br />
 
       <form onSubmit={handleLogin}>
         <label>Email:</label>

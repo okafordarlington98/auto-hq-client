@@ -6,14 +6,14 @@ import ForumCard from "../components/ForumCard"; // used to render each Forum
 
 function Forums() {
 
-  const [ allForums, setAllForums ] = useState([])
-  const [ isLoading, setIsLoading ] = useState(true)
+  const [allForums, setAllForums] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getData()
   }, [])
 
-  const getData = async() => {
+  const getData = async () => {
     try {
 
       // call the API here to receive all forums...
@@ -29,24 +29,31 @@ function Forums() {
     }
   }
 
-   if (isLoading) return <h3>Loading...</h3> //todo proper loading animation here
+  if (isLoading) return <h3>Loading...</h3> //todo proper loading animation here
 
-   return (
+  return (
     <div className="Forums">
 
       <Link to="/forums/create">
         <button>Create Forum</button>
-      </Link>     
+      </Link>
 
       {/* ... list of all forums should be rendered here   */}
       {/* ... for each forum, we should render one ForumCard */}
-      {allForums.map((forum) => {
-        return <ForumCard/>
+      {allForums.map((forum) => (
+
+        <ForumCard
+
+          key={forum._id}
+
+          forum={forum}
+
+        />
 
         //* ...or passing the properties of the object by spreading them
         // return <ForumCard key={forum.id} {...forum}/>
-      })}
-       
+      ))}
+
     </div>
   );
 }
