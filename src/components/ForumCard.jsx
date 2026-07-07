@@ -1,23 +1,33 @@
 import { Link } from "react-router-dom";
 
-function ForumCard ({ forum }) {
-  
+function ForumCard({ forum }) {
   return (
-    <div className="ForumCard card">
-      <Link to={`/forums/${forum._id}`}>
-        <h3>{forum.name}</h3>
-      </Link>
+    <div className="event-card">
 
-      <p>{forum.description}</p>
-      <p><strong>Icon:</strong> {forum.icon}</p>
+      <img src={forum.image} alt={forum.name} />
 
-      {forum.image && (
-        <img
-          src={forum.image}
-          alt={forum.name}
-          width="250"
-        />
-      )}
+      <div className="event-info">
+
+        <h2>{forum.name}</h2>
+
+        <p>{forum.description}</p>
+
+        <p>{forum.icon}</p>
+
+        <div className="event-buttons">
+
+          <Link to={`/forums/${forum._id}`}>
+            <button className="view-btn">View Forum</button>
+          </Link>
+
+          <Link to={`/forums/edit/${forum._id}`}>
+            <button className="view-btn">Edit Forum</button>
+          </Link>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }

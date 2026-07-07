@@ -32,27 +32,32 @@ function Forums() {
   if (isLoading) return <h3>Loading...</h3> //todo proper loading animation here
 
   return (
-    <div className="Forums">
+    <div className="events-page">
 
-      <Link to="/forums/create">
-        <button>Create Forum</button>
-      </Link>
+      <div className="events-container">
 
-      {/* ... list of all forums should be rendered here   */}
-      {/* ... for each forum, we should render one ForumCard */}
-      {allForums.map((forum) => (
+        <Link to="/forums/create">
+          <button className="create-btn">Create Forum</button>
+        </Link>
 
-        <ForumCard
+        <div className="events-grid">
 
-          key={forum._id}
+          {/* ... list of all forums should be rendered here   */}
+          {/* ... for each forum, we should render one ForumCard */}
+          {allForums.map((forum) => {
+            return (
+              <ForumCard
+                key={forum._id}
+                forum={forum}
+              />
+            );
+            //* ...or passing the properties of the object by spreading them
+            // return <ForumCard key={forum.id} {...forum}/>
+          })}
 
-          forum={forum}
+        </div>
 
-        />
-
-        //* ...or passing the properties of the object by spreading them
-        // return <ForumCard key={forum.id} {...forum}/>
-      ))}
+      </div>
 
     </div>
   );

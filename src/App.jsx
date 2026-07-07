@@ -12,6 +12,8 @@ import EditEvent from "./pages/EditEvent";
 import Forums from "./pages/Forums";
 import CreateForum from "./pages/CreateForum";
 import ForumDetails from "./pages/ForumDetails";
+import EditForum from "./pages/EditForum";
+
 
 
 
@@ -41,7 +43,9 @@ function App() {
         <Route path="/forums" element={<Forums />} />
         <Route path="/forums/create" element={<CreateForum />} />
         <Route path="/forums/:forumId" element={<ForumDetails />} />
-        
+        <Route path="/forums/edit/:forumId" element={<EditForum />} />
+
+
 
 
 

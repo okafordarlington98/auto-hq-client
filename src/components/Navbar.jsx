@@ -5,7 +5,13 @@ function Navbar() {
         <nav>
 
             <div className="logo">
-                <Link to="/">AUTO HQ</Link>
+                <Link to="/">
+                    <img
+                        src="/autohq-logo.png"
+                        alt="AUTO HQ Logo"
+                        className="logo-img"
+                    />
+                </Link>
             </div>
 
             <div className="links">

@@ -168,7 +168,9 @@ function EditEvent() {
         <button type="submit">Update Event</button>
       </form>
 
-      <button onClick={deleteEvent}>Delete Event</button>
+      <button 
+      className="delete-btn"
+      onClick={deleteEvent}>Delete Event</button>
     </div>
   );
 }

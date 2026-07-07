@@ -32,35 +32,49 @@ function EventDetails() {
   return (
     <div className="EventDetails">
 
-      <h1>{event.title}</h1>
-
-      <p>{event.description}</p>
-
-      <p><strong>Location:</strong> {event.location}</p>
-
-      <p><strong>Date:</strong> {event.date}</p>
-
-      <p><strong>Start:</strong> {event.startTime}</p>
-
-      <p><strong>End:</strong> {event.endTime}</p>
-
-      <p><strong>Organizer:</strong> {event.organizer}</p>
-
       {event.image && (
         <img
           className="details-image"
           src={event.image}
-          alt={event.title}
+          alt={event.name}
         />
       )}
 
-      <Link to="/events">
-        <button>Back to Events</button>
-      </Link>
+      <div className="details-content">
 
-      <Link to={`/events/edit/${event._id}`}>
-        <button>Edit Event</button>
-      </Link>
+        <h1>{event.title}</h1>
+
+        <p>{event.description}</p>
+
+        <p><strong>Location:</strong> {event.location}</p>
+
+        <p>
+          <strong>Date:</strong>{" "}
+          {new Date(event.date).toLocaleDateString()}
+        </p>
+
+        <p>
+          <strong>Time:</strong> {event.startTime} - {event.endTime}
+        </p>
+
+        <p>
+          <strong>Organizer:</strong> {event.organizer}
+        </p>
+
+
+        <div className="event-buttons">
+
+          <Link to="/events">
+            <button className="view-btn">Back to Events</button>
+          </Link>
+
+          <Link to={`/events/edit/${event._id}`}>
+            <button className="view-btn">Edit Event</button>
+          </Link>
+
+        </div>
+
+      </div>
 
     </div>
   );
