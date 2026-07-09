@@ -1,65 +1,118 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"; // used for calling the API
+import axios from "axios";
 
-import EventCard from "../components/EventCard"; // used to render each Event
+import EventCard from "../components/EventCard";
 
 function Events() {
 
-    const [allEvents, setAllEvents] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+  const [allEvents, setAllEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
-    useEffect(() => {
-        getData()
-    }, [])
+  useEffect(() => {
+    getData();
+  }, []);
 
-    const getData = async () => {
-        try {
+  useEffect(() => {
 
-            // call the API here to receive all ebents...
-            const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/events`)
-            console.log(response.data)
-            setAllEvents(response.data)
+    const searchText = search.toLowerCase();
 
-            setIsLoading(false) // render the component once the data finished loading
+    const filtered = allEvents.filter((event) => {
 
-        } catch (error) {
-            console.log(error)
-            //todo proper error handling here
-        }
+      return (
+        event.title?.toLowerCase().includes(searchText) ||
+        event.description?.toLowerCase().includes(searchText) ||
+        event.location?.toLowerCase().includes(searchText) ||
+        event.organizer?.toLowerCase().includes(searchText)
+      );
+
+    });
+
+    setFilteredEvents(filtered);
+
+  }, [search, allEvents]);
+
+  const getData = async () => {
+
+    try {
+
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/events`
+      );
+
+      console.log(response.data);
+
+      setAllEvents(response.data);
+      setFilteredEvents(response.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    } finally {
+
+      setIsLoading(false);
+
     }
 
-    if (isLoading) return <h3>Loading...</h3> //todo proper loading animation here
+  };
 
-    return (
-        <div className="events-page">
+  if (isLoading) {
+    return <h3>Loading...</h3>;
+  }
 
-            <div className="events-container">
+  return (
 
-                <Link to="/events/create">
-                    <button className="create-btn">Create Event</button>
-                </Link>
+    <div className="events-page">
 
-                <div className="events-grid">
-                    {/* ... list of all events should be rendered here   */}
-                    {/* ... for each event, we should render one EventCard */}
-                    {allEvents.map((event) => {
-                        return <EventCard
-                        key={event._id}
-                        event={event} 
-                        />
-                        //* ...or passing the properties of the object by spreading them
-                        // return <EventCard key={event.id} {...event}/>
-                    })}
+      <div className="events-container">
 
-                </div>
+        <Link to="/events/create">
+          <button className="create-btn">
+            Create Event
+          </button>
+        </Link>
 
-            </div>
+        <div className="search-filter">
 
-
+          <input
+            type="text"
+            placeholder="🔍 Search events..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
         </div>
-    );
+
+        <div className="events-grid">
+
+          {filteredEvents.length > 0 ? (
+
+            filteredEvents.map((event) => (
+
+              <EventCard
+                key={event._id}
+                event={event}
+              />
+
+            ))
+
+          ) : (
+
+            <h2>No events found.</h2>
+
+          )}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
+
 }
 
 export default Events;
